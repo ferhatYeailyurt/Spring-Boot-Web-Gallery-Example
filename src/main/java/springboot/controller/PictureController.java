@@ -28,6 +28,12 @@ public class PictureController {
 		return "newPicture";
 	}
 	
+	@GetMapping("/allPicture")
+	public String allPicture()
+	{
+		return "allPicture";
+	}
+	
 	
 	
 	
