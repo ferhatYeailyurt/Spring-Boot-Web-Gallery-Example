@@ -21,8 +21,23 @@
     <div role="navigation">
     	<div class="navbar navbar-inverse">
     		<a href="#" class="navbar-brand">Anasayfa</a>
+    			<div class="navbar-collapse collapse">
+    				<ul class="nav navbar-nav">
+    					<li><a href="">Resim Ekle</a></li>
+    					<li><a href="">Resimleri Listele</a></li>
+    				</ul>
+    			</div>
     	</div>
     </div>
+    
+    <div class="contoainer">
+    	<div class="jumbotron text-center">
+    		<h1>Anasayfaya Hos Geldiniz</h1>
+    	</div>
+    		
+    </div>
+    
+    
     
     
     
