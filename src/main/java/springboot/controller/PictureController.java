@@ -22,6 +22,12 @@ public class PictureController {
 		return "index";
 	}
 	
+	@GetMapping("/newPicture")
+	public String newPicture()
+	{
+		return "newPicture";
+	}
+	
 	
 	
 	

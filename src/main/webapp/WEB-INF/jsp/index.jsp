@@ -23,7 +23,7 @@
     		<a href="#" class="navbar-brand">Anasayfa</a>
     			<div class="navbar-collapse collapse">
     				<ul class="nav navbar-nav">
-    					<li><a href="">Resim Ekle</a></li>
+    					<li><a href="<c:url value='/newPicture' />">Resim Ekle</a></li>
     					<li><a href="">Resimleri Listele</a></li>
     				</ul>
     			</div>
