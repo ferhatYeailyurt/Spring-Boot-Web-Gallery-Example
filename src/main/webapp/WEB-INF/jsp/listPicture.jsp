@@ -43,6 +43,7 @@
 						<thead>
 							<tr>
 								<th>Id</th>
+								<th>Resim</th>
 								<th>Resim Adı</th>
 								<th>Açıklama</th>
 								<th>Tarih</th>
@@ -52,6 +53,7 @@
 							<c:forEach var="picture" items="${pictures}">
 								<tr>
 									<td>${picture.id}</td>
+									<td></td>
 									<td>${picture.pictureName}</td>
 									<td>${picture.pictureDescription}</td>
 									<td>${picture.dateCreated}</td>

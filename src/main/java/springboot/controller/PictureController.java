@@ -2,6 +2,7 @@ package springboot.controller;
 
 import java.util.Date;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +30,9 @@ public class PictureController {
 	}
 	
 	@GetMapping("/listPicture")
-	public String allPicture()
+	public String allPicture(HttpServletRequest request)
 	{
+		request.setAttribute("pictures", pictureService.findAll());
 		return "listPicture";
 	}
 	
