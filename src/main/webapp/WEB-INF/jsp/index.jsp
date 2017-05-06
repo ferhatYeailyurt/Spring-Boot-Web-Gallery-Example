@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,7 +26,7 @@
     			<div class="navbar-collapse collapse">
     				<ul class="nav navbar-nav">
     					<li><a href="<c:url value='/newPicture' />">Resim Ekle</a></li>
-    					<li>a href="<c:url value='/newPicture' />">Resimleri Listele</a></li>
+    					<li><a href="<c:url value='/listPicture' />">Resimleri Listele</a></li>
     				</ul>
     			</div>
     	</div>
@@ -32,7 +34,7 @@
     
     <div class="contoainer">
     	<div class="jumbotron text-center">
-    		<h1>Anasayfaya Hos Geldiniz</h1>
+    		<h1>Anasayfaya Hoş Geldiniz</h1>
     	</div>
     		
     </div>

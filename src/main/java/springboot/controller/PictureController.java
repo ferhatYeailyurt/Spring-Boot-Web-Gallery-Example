@@ -28,10 +28,10 @@ public class PictureController {
 		return "newPicture";
 	}
 	
-	@GetMapping("/allPicture")
+	@GetMapping("/listPicture")
 	public String allPicture()
 	{
-		return "allPicture";
+		return "listPicture";
 	}
 	
 	
