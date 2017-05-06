@@ -11,7 +11,7 @@ import springboot.model.Picture;
 import springboot.service.PictureService;
 
 @RestController
-public class SampleRestController {
+public class PictureRestController {
 	
 	@Autowired
 	private PictureService pictureService;

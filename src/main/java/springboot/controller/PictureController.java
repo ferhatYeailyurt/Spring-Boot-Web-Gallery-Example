@@ -1,11 +1,5 @@
 package springboot.controller;
 
-
-
-
-
-
-
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +11,15 @@ import springboot.model.Picture;
 import springboot.service.PictureService;
 
 @Controller
-public class MainController {
+public class PictureController {
 	
 	@Autowired
 	private PictureService pictureService;
 
-	@GetMapping("/home")
+	@GetMapping("/")
 	public String home()
 	{
-		return "test home";
+		return "index";
 	}
 	
 	
