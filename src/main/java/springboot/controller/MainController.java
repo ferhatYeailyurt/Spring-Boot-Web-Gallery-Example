@@ -25,16 +25,13 @@ public class MainController {
 	@GetMapping("/home")
 	public String home()
 	{
-		return "index";
+		return "test home";
 	}
 	
-	@GetMapping("/save-picture")
-	public String savePicture(@RequestParam String name,@RequestParam String description )
-	{
-		Picture picture=new Picture(name, description, new Date());
-		pictureService.save(picture);
-		return "picture saved";
-	}
+	
+	
+	
+	
 	
 	
 }
