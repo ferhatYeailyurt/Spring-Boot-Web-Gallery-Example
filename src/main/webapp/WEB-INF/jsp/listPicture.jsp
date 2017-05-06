@@ -15,6 +15,7 @@
     <title>Resimleri Listele</title>
     
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
     
 
 
@@ -31,6 +32,36 @@
     			</div>
     	</div>
     </div>
+    
+    
+    
+    <div class="container text-center" id="tasksDiv">
+				<h3>Resimler</h3>
+				<hr>
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered text-left">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Resim Adı</th>
+								<th>Açıklama</th>
+								<th>Tarih</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="picture" items="${pictures}">
+								<tr>
+									<td>${picture.id}</td>
+									<td>${picture.pictureName}</td>
+									<td>${picture.pictureDescription}</td>
+									<td>${picture.dateCreated}</td>
+									</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
     <script src="static/js/jquery-1.11.1.min.js"></script>    
     <script src="static/js/bootstrap.min.js"></script>
     </body>
