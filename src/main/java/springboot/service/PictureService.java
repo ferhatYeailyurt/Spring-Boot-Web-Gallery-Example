@@ -29,8 +29,16 @@ public class PictureService {
 			pictures.add(picture);
 		}
 		return pictures;
-		
-		
+	}
+	
+	public void save(Picture picture)
+	{
+		pictureRepository.save(picture);
+	}
+	
+	public void delete(int id)
+	{
+		pictureRepository.delete(id);
 	}
 	
 }

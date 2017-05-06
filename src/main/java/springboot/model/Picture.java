@@ -1,8 +1,9 @@
 package springboot.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,8 @@ public class Picture implements Serializable{
 
 	private String pictureDescription;
 	
-	@Type(type="timestamp")
+	@Basic
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreated;
 
 	public Picture(String pictureName, String pictureDescription, Date dateCreated) {
