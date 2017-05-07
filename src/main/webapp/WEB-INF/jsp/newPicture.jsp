@@ -31,6 +31,29 @@
     			</div>
     	</div>
     </div>
+    
+ 		 <div class="container text-center">
+				<h3>Resim Ekle</h3>
+				<hr>
+				<form class="form-horizontal" method="POST" action="savePicture">
+					<input type="hidden" name="id" value="${picture.id}"/>
+					<div class="form-group">
+						<label class="control-label col-md-3">Resim Adı:</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="pictureName" value="${picture.pictureName}"/>
+						</div>				
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Resim Açıklaması:</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="pictureDescription" value="${picture.pictureDescription}"/>
+						</div>				
+					</div>	
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="Kaydet"/>
+					</div>
+				</form>
+			</div>
     <script src="static/js/jquery-1.11.1.min.js"></script>    
     <script src="static/js/bootstrap.min.js"></script>
     </body>
