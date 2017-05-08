@@ -132,9 +132,11 @@ public class PictureController {
 	
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody
-	String uploadFileHandler(@RequestParam("pictureName") String name,
-			@RequestParam("file") MultipartFile file) {
+	String uploadFileHandler(@ModelAttribute Picture picture, BindingResult bindingResult, @RequestParam("pictureName") String name, @RequestParam("file") MultipartFile file,HttpServletRequest request) {
 
+		
+		
+		File serverFile = null;
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
@@ -146,23 +148,64 @@ public class PictureController {
 					dir.mkdirs();
 
 				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
+				serverFile = new File(dir.getAbsolutePath()
 						+ File.separator + name+".jpg");
+				String str=serverFile.getAbsolutePath();
+				System.out.println("yol:"+str);
 				BufferedOutputStream stream = new BufferedOutputStream(
 						new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-
 				
+				
+				//////
+				picture.setDateCreated(new Date());
+				
+				
+				File dosya = new File(str);
+				
+				
+				SecureRandom random = new SecureRandom();
+				
+				String uniq = new BigInteger(130,random).toString();
+				
+				String absolutePath = dosya.getAbsolutePath();
+				
+				String filePath = absolutePath.
+				    substring(0,absolutePath.lastIndexOf(File.separator));
+				
+				File newFile = new File(absolutePath+uniq+dosya.getName());
+				
+			
+				dosya.renameTo(newFile);
+				dosya.delete();
+				
+				picture.setImagePath(newFile.getName());
 
-				return "You successfully uploaded file=" + name;
-			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
-			}
-		} else {
-			return "You failed to upload " + name
-					+ " because the file was empty.";
-		}
+				pictureService.save(picture);
+				request.setAttribute("pictures", pictureService.findAll());
+				
+							return "Başarılı";
+						} catch (Exception e) {
+							return "You failed to upload " + name + " => " + e.getMessage();
+						}
+					} else {
+						System.out.println("You failed to upload " + name
+								+ " because the file was empty."); 
+					}
+	
+		
+	////////
+		
+			
+			return "listPicture";
+			
+			
+			//////
+		
+		
+		
+		
 	}
 
 	

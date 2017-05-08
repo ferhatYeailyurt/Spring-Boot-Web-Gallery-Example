@@ -50,9 +50,9 @@
 						</div>				
 					</div>	
 					<div class="form-group">
-						<label class="control-label col-md-3">Resim Yolu:</label>
+						<label class="control-label col-md-3">Resimi Seç:</label>
 						<div class="col-md-7">
-							<input type="file" name="file" id="file" /> <br/>
+							<input type="file" class="form-control" name="file" id="file" /> <br/>
 							</div>				
 					</div>
 					
