@@ -1,16 +1,35 @@
 package springboot.controller;
 
-import java.util.Date;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Date;
+import java.util.List;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import ch.qos.logback.classic.pattern.FileOfCallerConverter;
 import springboot.model.Picture;
 import springboot.service.PictureService;
 
@@ -43,6 +62,28 @@ public class PictureController {
 	public String savePicture(@ModelAttribute Picture picture, BindingResult bindingResult,HttpServletRequest request)
 	{
 		picture.setDateCreated(new Date());
+		
+		String path = request.getParameter("imagePath");
+		File dosya = new File(path);
+		
+		
+		SecureRandom random = new SecureRandom();
+		
+		String uniq = new BigInteger(130,random).toString();
+		
+		String absolutePath = dosya.getAbsolutePath();
+		
+		String filePath = absolutePath.
+		    substring(0,absolutePath.lastIndexOf(File.separator));
+		
+		File newFile = new File(absolutePath+uniq+dosya.getName());
+		
+	
+		dosya.renameTo(newFile);
+		dosya.delete();
+		
+		picture.setImagePath(newFile.getName());
+
 		pictureService.save(picture);
 		request.setAttribute("pictures", pictureService.findAll());
 		return "newPicture";
@@ -54,4 +95,86 @@ public class PictureController {
 	
 	
 	
+	@GetMapping("/yazdir")
+	public String displayPicture(HttpServletRequest request,HttpServletResponse response) throws IOException
+	{
+		
+		
+		response.setContentType("image/jpeg");
+		
+		ServletOutputStream out;
+		out = response.getOutputStream();
+		String path = request.getParameter("path");
+		
+		System.out.println(path);
+		FileInputStream fin = new FileInputStream(path);
+		
+		BufferedInputStream bin = new BufferedInputStream(fin);
+		BufferedOutputStream bout = new BufferedOutputStream(out);
+		int ch =0; ;
+		while((ch=bin.read())!=-1)
+		{
+		bout.write(ch);
+		}
+		
+		bin.close();
+		fin.close();
+		bout.close();
+		out.close();
+		
+	    return "listPicture";
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	public @ResponseBody
+	String uploadFileHandler(@RequestParam("pictureName") String name,
+			@RequestParam("file") MultipartFile file) {
+
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = "c:\\Users\\ferhat\\workspaceneonk\\springboot\\src\\main\\webapp\\images";
+				File dir = new File(rootPath);
+				if (!dir.exists())
+					dir.mkdirs();
+
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()
+						+ File.separator + name+".jpg");
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				
+
+				return "You successfully uploaded file=" + name;
+			} catch (Exception e) {
+				return "You failed to upload " + name + " => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload " + name
+					+ " because the file was empty.";
+		}
+	}
+
+	
+		
+	
 }
+
+	
+	
+	
+	
+	
+	
+	
+

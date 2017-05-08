@@ -47,13 +47,23 @@
 								<th>Resim Adı</th>
 								<th>Açıklama</th>
 								<th>Tarih</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="picture" items="${pictures}">
 								<tr>
 									<td>${picture.id}</td>
-									<td></td>
+									<td>
+									
+									<img src="images/${picture.imagePath}" width ="50px" height="50px">
+									</img>
+									${picture.imagePath}
+									 	<!--  <a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath} ">Göster</a> -->
+									 	
+									 	
+									 	</td>
+									
 									<td>${picture.pictureName}</td>
 									<td>${picture.pictureDescription}</td>
 									<td>${picture.dateCreated}</td>
@@ -63,6 +73,11 @@
 					</table>
 				</div>
 			</div>
+			
+			
+		
+			
+	
 			
     <script src="static/js/jquery-1.11.1.min.js"></script>    
     <script src="static/js/bootstrap.min.js"></script>

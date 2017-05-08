@@ -12,7 +12,7 @@
     <meta http-equiv="Cache-Control" content="no-cache"> 
     <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
     
-    <title>Resim Ekleme</title>
+    <title>Resim Ekle</title>
     
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     
@@ -35,7 +35,7 @@
  		 <div class="container text-center">
 				<h3>Resim Ekle</h3>
 				<hr>
-				<form class="form-horizontal" method="POST" action="savePicture">
+				<form class="form-horizontal" method="POST" action="uploadFile" enctype="multipart/form-data">
 					<input type="hidden" name="id" value="${picture.id}"/>
 					<div class="form-group">
 						<label class="control-label col-md-3">Resim Adı:</label>
@@ -50,10 +50,21 @@
 						</div>				
 					</div>	
 					<div class="form-group">
+						<label class="control-label col-md-3">Resim Yolu:</label>
+						<div class="col-md-7">
+							<input type="file" name="file" id="file" /> <br/>
+							</div>				
+					</div>
+					
+					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Kaydet"/>
 					</div>
-				</form>
-			</div>
+					
+
+				
+				
+	</div>
+			
     <script src="static/js/jquery-1.11.1.min.js"></script>    
     <script src="static/js/bootstrap.min.js"></script>
     </body>
