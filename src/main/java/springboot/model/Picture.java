@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,22 +22,34 @@ public class Picture implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	
 	private String pictureName;
-
 
 	private String pictureDescription;
 	
 	@Basic
     @Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreated;
+	
+	private String imagePath;
+	
+	
+	
+	public String getImagePath() {
+		return imagePath;
+	}
 
-	public Picture(String pictureName, String pictureDescription, Date dateCreated) {
+	public Picture(String pictureName, String pictureDescription, Date dateCreated, String imagePath) {
 		super();
 		this.pictureName = pictureName;
 		this.pictureDescription = pictureDescription;
 		this.dateCreated = dateCreated;
+		this.imagePath = imagePath;
 	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	public Picture() {
 		
 	}
