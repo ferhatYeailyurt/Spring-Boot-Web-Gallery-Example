@@ -106,8 +106,10 @@ public class PictureController {
 		out = response.getOutputStream();
 		String path = request.getParameter("path");
 		
-		System.out.println(path);
-		FileInputStream fin = new FileInputStream(path);
+		System.out.println(request.getParameterValues(path));
+		FileInputStream fin = new FileInputStream("c:\\Users\\ferhat\\workspaceneonk\\springboot\\src\\main\\webapp\\images\\"+path);
+		
+		System.out.println("yeni yol:"+fin);
 		
 		BufferedInputStream bin = new BufferedInputStream(fin);
 		BufferedOutputStream bout = new BufferedOutputStream(out);

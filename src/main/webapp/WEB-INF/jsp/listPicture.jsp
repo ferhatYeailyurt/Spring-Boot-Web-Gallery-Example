@@ -58,8 +58,8 @@
 									
 									<img src="images/${picture.imagePath}" width ="50px" height="50px">
 									</img>
-									${picture.imagePath}
-									 	<!--  <a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath} ">Göster</a> -->
+									
+									 	 <a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath} ">Göster</a>
 									 	
 									 	
 									 	</td>
