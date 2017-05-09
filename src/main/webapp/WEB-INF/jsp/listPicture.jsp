@@ -54,14 +54,10 @@
 							<c:forEach var="picture" items="${pictures}">
 								<tr>
 									<td>${picture.id}</td>
-									<td>
-									
-									<img src="images/${picture.imagePath}" width ="50px" height="50px">
-									</img>
-									
-									 	 <a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath} ">Göster</a>
-									 	
-									 	
+										<td>
+											<a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath} ">
+											<img src="images/${picture.imagePath}" width ="50px" height="50px"></img>
+											</a>
 									 	</td>
 									
 									<td>${picture.pictureName}</td>
