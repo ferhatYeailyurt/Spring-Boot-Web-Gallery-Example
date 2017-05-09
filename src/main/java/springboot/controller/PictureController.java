@@ -58,43 +58,7 @@ public class PictureController {
 		return "listPicture";
 	}
 	
-	@PostMapping("/savePicture")
-	public String savePicture(@ModelAttribute Picture picture, BindingResult bindingResult,HttpServletRequest request)
-	{
-		picture.setDateCreated(new Date());
 		
-		String path = request.getParameter("imagePath");
-		File dosya = new File(path);
-		
-		
-		SecureRandom random = new SecureRandom();
-		
-		String uniq = new BigInteger(130,random).toString();
-		
-		String absolutePath = dosya.getAbsolutePath();
-		
-		String filePath = absolutePath.
-		    substring(0,absolutePath.lastIndexOf(File.separator));
-		
-		File newFile = new File(absolutePath+uniq+dosya.getName());
-		
-	
-		dosya.renameTo(newFile);
-		dosya.delete();
-		
-		picture.setImagePath(newFile.getName());
-
-		pictureService.save(picture);
-		request.setAttribute("pictures", pictureService.findAll());
-		return "newPicture";
-	}
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/yazdir")
 	public String displayPicture(HttpServletRequest request,HttpServletResponse response) throws IOException
 	{
@@ -195,18 +159,8 @@ public class PictureController {
 						System.out.println("You failed to upload " + name
 								+ " because the file was empty."); 
 					}
-	
-		
-	////////
-		
 			
 			return "listPicture";
-			
-			
-			//////
-		
-		
-		
 		
 	}
 
