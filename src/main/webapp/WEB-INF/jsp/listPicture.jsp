@@ -21,6 +21,48 @@
 
   </head>
     <body>
+    
+    <script>
+
+		function setCookie(cname,cvalue,exdays) {
+		    var d = new Date();
+		    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		    var expires = "expires=" + d.toGMTString();
+		    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+		var l=0;
+		function getCookie(cname) {
+		    var name = cname + "=";
+		    var decodedCookie = decodeURIComponent(document.cookie);
+		    var ca = decodedCookie.split(';');
+		    for(var i = 0; i < ca.length; i++) {
+		        var c = ca[i];
+		        while (c.charAt(0) == ' ') {
+		            c = c.substring(1);
+		        }
+		        if (c.indexOf(name) == 0) {
+		            return c.substring(name.length, c.length);
+		        }
+		    }
+			l=l+1;
+			document.getElementById('count').innerHTML=l;
+		    return "";
+		}
+		
+		function checkCookie() {
+		    var user=getCookie("username");
+		    if (user != "") {
+		        document.getElementById('count').innerHTML=user;
+		    } else {
+		       user = prompt("Lütfen kontrol ediniz:","");
+		       if (user != "" && user != null) {
+		           setCookie("username", user, 30);
+		       }
+		    }
+		}
+		
+		</script>
+    
     <div role="navigation">
     	<div class="navbar navbar-inverse">
     		<a href="/" class="navbar-brand">Anasayfa</a>
@@ -55,9 +97,13 @@
 								<tr>
 									<td>${picture.id}</td>
 										<td>
-											<a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath} ">
-											<img src="images/${picture.imagePath}" width ="50px" height="50px"></img>
+										
+											<a name="path" value="${picture.imagePath}" href="/yazdir?path=${picture.imagePath}" >
+											<img src="images/${picture.imagePath}" width ="50px" height="50px" onclick="getCookie()" ></img>
 											</a>
+											<div id="count">Sayıyı Göster</div>
+									 	
+									 	
 									 	</td>
 									
 									<td>${picture.pictureName}</td>
